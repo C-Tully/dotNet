@@ -17,8 +17,9 @@ namespace CEMS.Api.Data
 
       //configure column type. 
       //This will explicity tell EF Core that the salary column is a decimal type
+      //other wise it defaults to 18,2
       modelBuilder.Eneity<Employees>().Property(e => e.Salary)
-      .HasColumnType("decima910,2)");
+      .HasColumnType("decimal, 10,2)");
     }
     
   }
