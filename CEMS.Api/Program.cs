@@ -11,10 +11,12 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+    //Add services to Container.
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
-//Add services to Container.
-builder.Services.AddControllers();
+
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
