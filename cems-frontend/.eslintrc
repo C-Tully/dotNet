@@ -1,0 +1,50 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "extends": ["plugin:vue/vue3-essential", "eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "vue/multi-word-component-names": "off",
+    // "vue/html-closing-bracket-newline": [
+    //   "error",
+    //   {
+    //     "singleline": "never",
+    //     "multiline": "always"
+    //   }
+    // ],
+    "vue/component-tags-order": [
+      "error",
+      {
+        "order": ["template", "script", "style"]
+      }
+    ],
+    "no-shadow": [
+      "error",
+      { "builtinGlobals": false, "hoist": "functions", "allow": [] }
+    ],
+    "prefer-const": ["error", {}],
+    "no-var": ["error"]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)",
+        "**/*.test.{j,t}s?(x)"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+  // "rules": {
+  //   "no-unused-vars": "warn",
+  //   "no-console": "warn"
+  //   // Add more rules as needed
+  // }
+}

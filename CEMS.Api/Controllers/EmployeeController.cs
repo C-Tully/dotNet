@@ -17,13 +17,13 @@ namespace CEMS.Api.Controllers
 
     //Get: api/employees
     [HttpGet]
-
     public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
     {
       return await _context.Employees.ToListAsync();
     }
 
     //Get api/Employees/{id}
+    [HttpGet("{id}")]
     public async Task<ActionResult<Employee>> GetEmployee(int id)
     {
       var employee = await _context.Employees.FindAsync(id);
@@ -34,7 +34,7 @@ namespace CEMS.Api.Controllers
       return employee;
     }
 
-    //Post: api/employees
+    //Post: api/employees/create    
     [HttpPost]
     public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
     {
@@ -45,6 +45,8 @@ namespace CEMS.Api.Controllers
     }
 
     // PUT api/employees/{id}
+    
+    [HttpPost("{id}")]
     public async Task<IActionResult> UpdateEmployee(int id, Employee employee)
     {
       if (id != employee.EmployeeId)

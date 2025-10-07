@@ -1,31 +1,40 @@
 <template>
   <div>
-    <h1>Employee Form</h1>
-    <ul>
-      <li v-for="employee in employes" :key="employee.employeeId">
-        {{ employee.firstName }} - {{ employee.lastName }} -
-        {{ employee.salary }}
-      </li>
-    </ul>
+    <form @submit.prevent="handleSubmit">
+      <div v-for="(item, index) in formConfig" :key="index">
+        <label :for="item?.label">{{ item?.label }}</label>
+        <input :type="item.type" v-model="formData[item.label]" />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </template>
 <script>
-import { getEmployees } from "../services/employeeService";
-
 export default {
-  name: "EmployeesList",
+  name: "EmployeeForm",
   data() {
     return {
-      employees: [],
+      formConfig: [
+        { type: "text", label: "firstName" },
+        { type: "text", label: "lastName" },
+        { type: "text", label: "department" },
+        { type: "number", label: "salary" },
+      ],
+      formData: {},
     };
   },
-  async created() {
-    try {
-      const response = await getEmployee();
-      this.employees = response.data;
-    } catch (err) {
-      console.error(err);
-    }
+  mounted() {
+    console.log("start::", this.formConfig);
+  },
+  methods: {
+    handleSubmit() {
+      this.$emit("formSubmission", this.formData);
+      this.formData = {
+        firstName: "",
+        lastName: "",
+        salary: "",
+      };
+    },
   },
 };
 </script>
