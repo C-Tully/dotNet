@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { getEmployees } from "../../services/employeeService.js";
+// import { getEmployees } from "../../services/employeeService.js";
 
 export default {
   name: "EmployeeList",
@@ -20,14 +20,14 @@ export default {
       employees: [],
     };
   },
-  async created() {
-    try {
-      const response = await getEmployees();
-      this.employees = response.data;
-      console.log("response Data::", this.employees);
-    } catch (err) {
-      console.error(`EmployeeList:: ${err}`);
-    }
-  },
+  // async created() {
+  //   try {
+  //     const response = await getEmployees();
+  //     this.employees = response.data;
+  //     console.log("response Data::", this.employees);
+  //   } catch (err) {
+  //     console.error(`EmployeeList:: ${err}`);
+  //   }
+  // },
 };
 </script>

@@ -12,32 +12,43 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import EmployeeList from "@/components/EmployeeList/EmployeeList.vue";
 import EmployeeForm from "@/components/EmployeeForm/EmployeeForm.vue";
-import { createEmployee } from "@/services/employeeService.js";
+// import { createEmployee } from "@/services/employeeService.js";
+import { useEmployeeStore } from "@/stores/employeeStore.js";
 
-export default {
-  name: "EmployeeView",
-  components: {
-    EmployeeForm,
-    EmployeeList,
-  },
-  data() {
-    return {
-      radioMode: "A",
-    };
-  },
-  methods: {
-    async handleFormSubmit(formData) {
-      console.log("EmployeeView::handleFormSubmit::", formData);
-      try {
-        const response = await createEmployee(formData);
-        if (!response.data) console.log("ERROR", response);
-      } catch (err) {
-        console.log("failed to create employe");
-      }
-    },
-  },
+const store = useEmployeeStore();
+
+const handleFormSubmit = async (formData) => {
+  const success = await store.addEmployee(formData);
+
+  if (success) {
+    //success! do something
+  }
 };
+
+// export default {
+//   name: "EmployeeView",
+//   components: {
+//     EmployeeForm,
+//     EmployeeList,
+//   },
+//   data() {
+//     return {
+//       radioMode: "A",
+//     };
+//   },
+//   methods: {
+//     async handleFormSubmit(formData) {
+//       console.log("EmployeeView::handleFormSubmit::", formData);
+//       try {
+//         const response = await createEmployee(formData);
+//         if (!response.data) console.log("ERROR", response);
+//       } catch (err) {
+//         console.log("failed to create employe");
+//       }
+//     },
+//   },
+// };
 </script>
