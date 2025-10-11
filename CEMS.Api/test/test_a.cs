@@ -6,16 +6,42 @@ namespace interfaceTest {
 class SampleClass {
     static void Main(string[] args)
     {
+      //Because the potiental input value could be either a number(int) or a word ('red') 
+      //We need to handle the input values seperatelly.
+
       // colour c = colour.blue;
-      string input = Console.ReadLine();
+      string input = Console.ReadLine().Trim();
 
-      if (!input)
-        Console.WriteLine("Please enter a value");
+      //Validate input for 
+      if (string.IsEmptyOrNull(input))
+      {
+        Console.WriteLine("Empty Input");
+        return;
+      }
 
-      if (Enum.TryParse(input, true, out colour c))
+      //Numbers      
+      if (int.TryParse(input, out int numeric) && Enum.IsDefined(typeof(Colour), numeric))
       {
         switch (c)
         {
+          case 0:
+            Console.WriteLine("0");
+            break;
+          case 1:
+            Console.WriteLine("1");
+            break;
+          case 2:
+            Console.WriteLine("2");
+            break;
+
+        }
+      }
+      else if(Enum.TryParse<colour>(input, true, out colour c))
+      {
+        //String
+        switch (c)
+        {
+
           case colour.red:
             Console.WriteLine(colour.red);
             break;
@@ -25,15 +51,12 @@ class SampleClass {
           case colour.green:
             Console.WriteLine(colour.green);
             break;
-
+          default:
+            Console.WriteLine("unknown color");
+            break;
+          
+            }
         }
       }
-      else
-      {
-        Console.WriteLine("Please choose a valid colour");
-      }
-
-        
-    }
   }
 }
