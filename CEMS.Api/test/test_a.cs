@@ -3,7 +3,7 @@ namespace interfaceTest {
     red, green, blue
   };
 
-class SampleClass {
+  class SampleClass {
     static void Main(string[] args)
     {
       //Because the potiental input value could be either a number(int) or a word ('red') 
